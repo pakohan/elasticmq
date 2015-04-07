@@ -6,8 +6,8 @@ import AssemblyKeys._
 object BuildSettings {
   val buildSettings = Defaults.coreDefaultSettings ++ Seq (
     organization  := "org.elasticmq",
-    version       := "0.8.6-SNAPSHOT",
-    scalaVersion  := "2.11.4",
+    version       := "0.8.8-SNAPSHOT",
+    scalaVersion  := "2.11.5",
 
     addCompilerPlugin("org.scala-lang.plugins" % "scala-continuations-plugin_2.11.0" % "1.0.1"),
     libraryDependencies += "org.scala-lang.plugins" %% "scala-continuations-library" % "1.0.2",
@@ -50,7 +50,7 @@ object Dependencies {
   val jodaConvert   = "org.joda"                  % "joda-convert"          % "1.7"
   val config        = "com.typesafe"              % "config"                % "1.2.1"
 
-  val scalalogging  = "com.typesafe.scala-logging" %% "scala-logging-slf4j" % "2.1.2"
+  val scalalogging  = "com.typesafe.scala-logging" %% "scala-logging"       % "3.1.0"
   val logback       = "ch.qos.logback"            % "logback-classic"       % "1.1.2"
   val jclOverSlf4j  = "org.slf4j"                 % "jcl-over-slf4j"        % "1.7.7" // needed form amazon java sdk
 

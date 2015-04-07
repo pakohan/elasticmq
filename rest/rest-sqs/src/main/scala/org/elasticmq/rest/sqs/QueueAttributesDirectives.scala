@@ -27,7 +27,8 @@ trait QueueAttributesDirectives { this: ElasticMQDirectives with AttributesModul
         ApproximateNumberOfMessagesNotVisibleAttribute ::
         ApproximateNumberOfMessagesDelayedAttribute ::
         CreatedTimestampAttribute ::
-        LastModifiedTimestampAttribute :: Nil)
+        LastModifiedTimestampAttribute :: 
+        QueueArnAttribute :: Nil)
   }
 
   val getQueueAttributes = {
@@ -49,7 +50,8 @@ trait QueueAttributesDirectives { this: ElasticMQDirectives with AttributesModul
               Rule(ApproximateNumberOfMessagesDelayedAttribute, () => stats.map(_.approximateNumberOfMessagesDelayed.toString)),
               Rule(CreatedTimestampAttribute, () => Future.successful((queueData.created.getMillis/1000L).toString)),
               Rule(LastModifiedTimestampAttribute, () => Future.successful((queueData.lastModified.getMillis/1000L).toString)),
-              Rule(ReceiveMessageWaitTimeSecondsAttribute, () => Future.successful(queueData.receiveMessageWait.getStandardSeconds.toString)))
+              Rule(ReceiveMessageWaitTimeSecondsAttribute, () => Future.successful(queueData.receiveMessageWait.getStandardSeconds.toString)),
+              Rule(QueueArnAttribute, () => Future.successful("arn:aws:sqs:elasticmq:000000000000:" + queueData.name)))
           }
 
           def responseXml(attributes: List[(String, String)]) = {
